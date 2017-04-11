@@ -41,7 +41,7 @@ ul, li {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, .6);    
+    background-color: black;    
 }
 
 .video-box .video-wrapper {
