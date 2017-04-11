@@ -1,0 +1,568 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: "微軟正黑體", Arial;    
+    background-color:#f3f3f3;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+}
+
+a {
+    text-decoration: none;
+    border: 0;
+    outline: none;
+    hlbr: expression(this.onFocus=this.blur());
+}
+
+img {
+    border: 0;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clear-fix {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.container {
+    position: relative;
+}
+
+/* Video */
+.video-box {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 1000;    
+}
+
+.video-box .video-wrapper {
+     position: relative;
+     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+     height: 0;
+     width: 100%; /* You can set this width to whatever suits your needs */     
+     margin: 0 auto;
+}
+
+.video-box .video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  
+    height: 100%;
+}
+
+.video-title {    
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .6);
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    text-align: center;
+    color: white;    
+}
+
+.video-names {
+    float: left; 
+    width: calc(100% - 80px);
+    margin-left: 40px;
+}
+
+.video-title .video-names div {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.video-title .video-names div.splitvs {
+    margin: 0 20px;
+    vertical-align: middle;
+}
+
+.video-title div.refresh {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    float: right;
+    margin-right: 6px;
+}
+
+.video-title div.refresh img {
+    opacity: 0.4; 
+}
+
+.channel-box {
+    color: #707070;
+    width: 100%;
+    height: 33px;
+    line-height: 33px;
+    display: block;
+    background: #e6e6e6; 
+}
+
+.channel-box ul li {
+    font-size: 1rem;
+    color: #707070;
+    width: 49%;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+}
+
+.channel-box ul li.split {
+    width: 2%;
+    color: #bfbfbf;
+}
+
+.channel-box ul li img {
+    display: inline-block;
+    width: 15px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.channel-box ul li a {
+    display: inline-block;
+    margin-left: 6px;
+    color: #707070;
+    font-size: 0.7rem;
+    height: auto;
+    vertical-align: middle;
+}
+
+.channel-box ul li.active img,  .channel-box ul li.active a {
+    color: #0090ff;
+}
+
+/* List view */
+.video-channel-name {
+    padding: 10px 10px;   
+}
+
+ul.listview {
+    display: block; 
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+ul.listview li {
+    margin-bottom: 10px; 
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    background-color: white;
+    border: 1px solid #dddddd;
+}
+
+ul.listview li .item {
+    line-height: 42px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    background:url(../images/icon_arrow01.png) no-repeat 95% 60%; 
+    background-size: 15px 15px;
+}
+
+ul.listview li .item.on {
+    background:url(../images/icon_arrow02.png) no-repeat 95% 60%;
+    background-size: 15px 15px; 
+}
+
+ul.listview li .item img {
+    width: 25px;
+    vertical-align: middle;
+    padding: 0 14px;
+    margin-top: -3px;
+}
+
+ul.listview li .item span.name {
+    display: inline-block; 
+    color:#333; 
+    font-weight: bold;
+}
+
+ul.listview li .item span.icon {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 1px;
+    vertical-align: middle;
+}
+
+ul.listview li .item span.icon img {
+    width: 16px;
+    height: 16px;
+}
+
+
+/* List view content */
+.programs-wrapper {
+    display: none;
+    width: 100%;
+}
+
+.programs {
+    display: table;
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+.programs div.row {
+    display: table-row;
+    height: 42px;
+    font-size: 12px;
+    border-top: 1pt solid #dddddd;
+    border-bottom:1pt solid #dddddd;
+    
+}
+    .programs div.row:nth-last-child(1) {
+        border-bottom: 0;
+    }
+
+.datetime {
+    font-size: 0.6rem;
+    color: #bfbfbf;
+    line-height: 18px;
+    display: table-cell; 
+    width: 20%;
+    vertical-align: middle; 
+    text-align: center;    
+    
+}
+
+.teams:before,.channel-name:before {
+  content : "";
+  position: absolute;
+  height  : 32px;
+  width   : 1px;
+  top: 5px;
+  left: 0;
+  display:block;
+  background-color:#ddd;
+}
+
+.teams {
+    color: #555555;
+    font-size: .7rem;
+    display: table-cell; 
+    width: 55%;
+    vertical-align: middle; 
+    text-align: left;
+    background: url(../images/icon_play01.png) no-repeat 95% center;
+    background-size: 22px 22px;
+    padding: 0 10px;    
+    position:relative;
+}
+.teams:hover {
+    background: url(../images/icon_play02.png) no-repeat 95% center;
+    background-size: 20px 20px;
+}
+
+
+
+.channel-name {
+    font-size: 0.6rem;
+    color: #bfbfbf;
+    display: table-cell; 
+    width: 25%;
+    vertical-align: middle; 
+    text-align: center;    
+    position:relative;
+}
+
+/* Dialog */
+.dialog {
+    position: absolute;
+    background-color: #f5f5f5;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.dialog ul {
+    list-style: none;
+    width: 100%;
+    padding: 0 1rem 48px 1rem;
+    box-sizing: border-box;
+}
+
+.dialog ul li {
+    width: 100%;
+    margin: 0;
+}
+
+i.orange {
+    background-color: orange !important;
+}
+
+i.lightgray {
+    background-color: #d3ab8d !important;
+}
+
+i.blue {
+    background-color: #7ecef4 !important;
+}
+
+i.brown {
+    background-color: #aeaeae !important;
+}
+
+.dialog ul li.other i {
+    width: 20px;
+    height: 20px;
+    float: left;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: gray;
+    color: white;
+    position: relative;
+    top: 22px;
+}
+
+.dialog ul li.other i > span {
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    font-size: 12px;
+    font-style: normal;
+}
+
+.dialog ul li.other q {
+    width: 80px;
+    height: 30px;
+    float: left;
+    font-size: 12px;
+    vertical-align: middle;
+    position: relative;
+    color: #adadad;
+    left: 10px;
+    top: 22px;
+}
+
+.dialog ul li.other .bubble {
+    box-sizing: border-box;
+    position: relative;
+    padding: 0.5rem;
+    margin: 0.5rem 0rem 0.5rem;
+    max-width: calc(100% - 100px);
+    width: auto;
+    line-height: 1.2; 
+    color:#1b1b1b;
+    background:#ffffff;
+    border-radius: 5px;
+    float: left;
+    vertical-align: middle;
+    font-size: 14px;
+    border: 1px solid #e6e6e6;
+}
+
+.dialog ul li.other .bubble span {
+    width: 0; 
+    height: 0; 
+    font-size: 0; 
+    overflow: hidden; 
+    position: absolute;
+}
+
+.dialog ul li.other .bubble span.arrow {
+    border-width: 10px; 
+    border-style: solid; 
+    border-color: transparent #e6e6e6 transparent transparent; 
+    left: -20px; 
+    top: 6px;
+}
+
+.dialog ul li.other .bubble span.arrowmask {
+    border-width: 10px; 
+    border-style: solid; 
+    border-color: transparent #ffffff transparent transparent; 
+    left: -19px; 
+    top: 6px;
+}
+
+.dialog ul li.self .bubble {
+    box-sizing: border-box;
+    position: relative;
+    padding: 0.5rem;
+    margin: 0.5rem 0rem 0.5rem;
+    max-width: calc(100% - 100px);
+    width: auto;
+    line-height: 1.2; 
+    color:#fff;
+    background:#237dd7;
+    border-radius: 5px;
+    float: right;
+}
+
+.dialog ul li.self .bubble:after {
+    content:"\00a0";
+    width: 0;
+    height: 0;
+    display: block;
+    border-style: solid;
+    border-width: 12px;
+    border-color: transparent transparent transparent #237dd7;
+    position: absolute;
+    z-index: 5;
+    top: 6px;
+    right: -20px;
+}
+
+/* Buttons */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 38px;
+  /*padding: 0 30px;*/
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box; }
+
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0; }
+
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #FFF;
+  background-color: #1EAEDB;
+  border-color: #1EAEDB; }
+
+/* Message */
+
+.message {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    box-sizing: border-box;
+    display: table;
+    position: fixed;
+    height: 38px;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    background-color: #eeeeee;
+}
+
+.message > input {
+    display: table-cell;
+    width: 75%;
+    padding: 6px;
+    height: 30px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid  #d2d2d2;
+}
+
+.message > button {
+    display: table-cell;
+    width: 20%;
+    box-sizing: border-box;
+    vertical-align: middle;
+    background-color: #aaaaaa;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    margin: 0px 5px 0px 10px;
+}
+
+@media (min-width: 400px) {
+    .channel-box {
+        height: 42px;
+    }
+    .channel-box ul li img {
+        width: 18px;
+    }
+    .channel-box ul li a {
+        font-size: 0.9rem;
+        line-height: 42px;
+        margin-left: 4px;
+    }
+    .ul.listview li .item .on  {
+        line-height: 52px;
+    }
+    
+}
+
+@media (min-width: 768px) {
+    .datetime {width: 15%; }
+    .teams {  
+        width: 75%;
+        background: url(../images/icon_play01.png) no-repeat 98% center;
+        background-size: 20px 20px;
+    }
+    .teams:hover { 
+        background: url(../images/icon_play02.png) no-repeat 98% center;
+        background-size: 20px 20px;
+    }
+    .channel-name { width: 10%; }
+    .message > input {
+        width: 88%;
+        padding: 0px;
+
+}
+
+.message > button {
+        width: 10%;
+        margin: 0px 0px 0px 8px;
+}
+}
+
